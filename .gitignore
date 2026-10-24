@@ -1,0 +1,20 @@
+# Node modules
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Environment files
+.env
+backend/.env
+
+# Build outputs
+build/
+dist/
+
+# OS/Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Excel files (agar ye internal testing data h to ignore karein)
+name.xlsx
