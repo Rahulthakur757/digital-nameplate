@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ntpcLogo from './assets/NTPC_Logo.svg.png';
 
 // Default Admin Credentials (Aage chal kar MERN API se replace kar sakte hain)
 const ADMIN_USER = 'admin';
@@ -57,29 +58,50 @@ export default function Login({ onLoginSuccess }) {
         overflow: 'hidden',
         border: '1px solid #cfd8dc'
       }}>
-        
-        {/* Brand Header */}
+
+        {/* Brand Header with NTPC Logo */}
         <div style={{
           background: '#b71c1c',
           color: '#ffffff',
-          padding: '24px 20px',
+          padding: '20px',
           textAlign: 'center',
           position: 'relative'
         }}>
-          <h2 style={{ margin: '0 0 6px 0', fontSize: '20px', letterSpacing: '0.5px' }}>
+          {/* Left Corner: NTPC Logo */}
+          <div style={{
+            position: 'absolute',
+            left: '14px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            background: '#ffffff',
+            padding: '3px 6px',
+            borderRadius: '6px',
+            display: 'flex',
+            alignItems: 'center',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+          }}>
+            <img
+              src={ntpcLogo}
+              alt="NTPC Logo"
+              style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
+            />
+          </div>
+
+          <h2 style={{ margin: '0 0 4px 0', fontSize: '18px', letterSpacing: '0.5px' }}>
             ESL Gateway Login
           </h2>
-          <small style={{ color: '#ffcdd2', fontSize: '13px', display: 'block' }}>
+          <small style={{ color: '#ffcdd2', fontSize: '10px', display: 'block' }}>
             ESL 7.50 DDS Management System
           </small>
+
           <span style={{
             position: 'absolute',
-            top: '12px',
-            right: '12px',
+            top: '30px',
+            right: '11px',
             background: 'rgba(255, 255, 255, 0.2)',
-            padding: '3px 8px',
+            padding: '3px 5px',
             borderRadius: '10px',
-            fontSize: '10px',
+            fontSize: '9px',
             fontWeight: 'bold',
             letterSpacing: '0.5px'
           }}>
@@ -89,7 +111,7 @@ export default function Login({ onLoginSuccess }) {
 
         {/* Login Form */}
         <form onSubmit={handleSubmit} style={{ padding: '24px 20px' }}>
-          
+
           {errorMsg && (
             <div style={{
               background: '#ffebee',

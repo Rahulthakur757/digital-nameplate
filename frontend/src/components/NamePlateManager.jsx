@@ -2799,14 +2799,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import QRCode from 'qrcode';
+import ntpcLogo from '../assets/NTPC_Logo.svg.png';
 
 // import './NamePlateManager.css';
-
 // Hardware Protocol Constants (ESL 7.50 DDS)
 const SERVICE_UUID = '0000fff0-0000-1000-8000-00805f9b34fb';
 const CHAR_UUID = '0000fff5-0000-1000-8000-00805f9b34fb';
-const PACKET_SIZE = 200; // 200 bytes per chunk
-
+const PACKET_SIZE = 200; 
 
 // Component function ke bahar define karein (Clean & Reusable)
 const DEFAULT_PLATE = {
@@ -2821,16 +2820,9 @@ const DEFAULT_PLATE = {
   status: 'Pending'
 };
 
-
 export default function NamePlateManager({ onLogout }) {
-
-
-
-
-  // 1. Pehle State declare karein
   const [plates, setPlates] = useState([DEFAULT_PLATE]);
 
-  // Synchronous State References
   const platesRef = useRef(plates);
   useEffect(() => {
     platesRef.current = plates;
@@ -2844,10 +2836,6 @@ export default function NamePlateManager({ onLogout }) {
 
   // UI Form States
   const [syncBothSides, setSyncBothSides] = useState(true);
-  // ... baaki saari states yahan rahengi ...
-
-  // 2. States declare hone ke baad Delete aur Clear functions likhein:
-
   // Saari added plates clear karna (Sirf default plate bachegi)
   const handleClearQueue = () => {
     if (plates.length <= 1) return;
@@ -2872,9 +2860,6 @@ export default function NamePlateManager({ onLogout }) {
     }
     setGlobalStatus('Plate removed from queue.');
   };
-
-
-
 
   // Row 1 (Master) ka text baki sabhi plates par sync karna bina MAC chhede
   const handleApplyMasterToAll = () => {
@@ -2911,10 +2896,7 @@ export default function NamePlateManager({ onLogout }) {
 
 
   // Live Bluetooth Hardware Mapping
-  // const [deviceMap, setDeviceMap] = useState({});
-
   // Form States (Front & Back)
-  // const [syncBothSides, setSyncBothSides] = useState(true);
   const [newFrontName, setNewFrontName] = useState('');
   const [newFrontDesignation, setNewFrontDesignation] = useState('');
   const [newFrontProject, setNewFrontProject] = useState('');
@@ -2927,7 +2909,7 @@ export default function NamePlateManager({ onLogout }) {
   // Sidebar Formatting Controls
   const [fontSizeChoice, setFontSizeChoice] = useState('auto');
   const [isBold, setIsBold] = useState(true);
-  const [textCaseChoice, setTextCaseChoice] = useState('uppercase'); // 'uppercase' | 'propercase'
+  const [textCaseChoice, setTextCaseChoice] = useState('uppercase'); 
   const [textColorChoice, setTextColorChoice] = useState('#000000');
   const [bgColorChoice, setBgColorChoice] = useState('#FFFFFF');
 
@@ -2976,7 +2958,6 @@ export default function NamePlateManager({ onLogout }) {
   };
 
   // QR Canvas Generator
-  // QR Canvas Generator
   useEffect(() => {
     if (!showQr || qrMode !== 'text' || !qrText.trim()) {
       setQrCanvasElement(null);
@@ -2987,7 +2968,7 @@ export default function NamePlateManager({ onLogout }) {
       offCanvas,
       qrText.trim(),
       {
-        width: 150, // 👈 120 se badha kar 150 kiya
+        width: 150, 
         margin: 1,
         color: {
           dark: textColorChoice === '#FFFFFF' ? '#FFFFFF' : '#000000',
@@ -3066,8 +3047,8 @@ export default function NamePlateManager({ onLogout }) {
 
     // QR Size ko 120 se badha kar 150x150 kiya
     const qrSize = 150;
-    const qrX = 800 - qrSize - 20; // Screen ke right edge se 35px padding
-    const qrY = 30; // Top se photo ke barabar alignment (30px)
+    const qrX = 800 - qrSize - 20; 
+    const qrY = 30; 
 
     if (showQr) {
       try {
@@ -3699,80 +3680,81 @@ export default function NamePlateManager({ onLogout }) {
 
     <div style={{ maxWidth: '1280px', margin: '0 auto', fontFamily: 'Segoe UI, Roboto, sans-serif', padding: '8px 16px 20px 16px' }}>
 
-      {/* Centered Title Header with Absolute Right Badge */}
-
-
-
-{/* 
-      <div style={{
-        background: '#b71c1c',
-        color: '#fff',
-        padding: '18px 24px',
-        borderRadius: '8px',
-        position: 'relative',
-        textAlign: 'center',
-        marginBottom: '16px',
-        boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
-      }}>
-        <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', letterSpacing: '0.5px', fontWeight: 'bold' }}>
-          ESL Gateway - Automated Nameplate System
-        </h2>
-        <small style={{ color: '#ffcdd2', fontSize: '13px', display: 'block' }}>
-          Hardware: ESL 7.50 DDS (Dual-Sided 192KB Pipeline)
-        </small>
-
-        <span style={{
-          position: 'absolute',
-          right: '20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          fontSize: '12px',
-          background: 'rgba(255,255,255,0.25)',
-          padding: '6px 14px',
-          borderRadius: '16px',
-          fontWeight: 'bold',
-          letterSpacing: '0.5px'
-        }}>
-          MERN & BLE
-        </span>
-      </div> */}
-
-
-      {/* Responsive Header Box (Pure Inline CSS - No External CSS Needed) */}
+{/* Equal Spaced Header with Enlarged NTPC Logo */}
       <div style={{
         background: '#b71c1c',
         color: '#ffffff',
-        padding: '18px 24px',
+        padding: '14px 28px',
         borderRadius: '8px',
-        position: 'relative',
-        textAlign: 'center',
         marginBottom: '16px',
-        boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
+        boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '24px' // Sabhi main sections ke beech equal uniform gap
       }}>
-        <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', letterSpacing: '0.5px', fontWeight: 'bold' }}>
-          ESL Gateway - Automated Nameplate System
-        </h2>
-        <small style={{ color: '#ffcdd2', fontSize: '13px', display: 'block' }}>
-          Hardware: ESL 7.50 DDS (Dual-Sided 192KB Pipeline)
-        </small>
-
-        {/* Right Corner: MERN & BLE Badge + Sign Out Button */}
+        {/* Left: Enlarged NTPC Logo */}
         <div style={{
-          position: 'absolute',
-          right: '20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
+          background: '#ffffff',
+          padding: '6px 12px',
+          borderRadius: '8px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+          flexShrink: 0
+        }}>
+          <img 
+            src={ntpcLogo} 
+            alt="NTPC Logo" 
+            style={{ 
+              height: '54px', // 👈 Bada size
+              width: 'auto', 
+              objectFit: 'contain', 
+              display: 'block' 
+            }} 
+          />
+        </div>
+
+        {/* Center: System Title & Subtitle */}
+        <div style={{ 
+          textAlign: 'center',
+          flex: 1 // Beech me fail kar dono taraf se equal space maintain karega
+        }}>
+          <h2 style={{ 
+            margin: '0 0 5px 0', 
+            fontSize: '22px', 
+            letterSpacing: '0.5px', 
+            fontWeight: 'bold',
+            lineHeight: '1.2'
+          }}>
+            ESL Gateway - Automated Nameplate System
+          </h2>
+          <small style={{ 
+            color: '#ffcdd2', 
+            fontSize: '13px', 
+            display: 'block' 
+          }}>
+            Hardware: ESL 7.50 DDS (Dual-Sided 192KB Pipeline)
+          </small>
+        </div>
+
+        {/* Right: Actions with Equal Gap */}
+        <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '10px'
+          gap: '20px', // 👈 Badge aur button ke beech brabar spacing
+          flexShrink: 0
         }}>
           <span style={{
             fontSize: '12px',
-            background: 'rgba(255, 255, 255, 0.25)',
-            padding: '6px 14px',
+            background: 'rgba(255, 255, 255, 0.22)',
+            color: '#ffffff',
+            padding: '8px 16px',
             borderRadius: '16px',
             fontWeight: 'bold',
-            letterSpacing: '0.5px'
+            letterSpacing: '0.5px',
+            whiteSpace: 'nowrap'
           }}>
             MERN & BLE
           </span>
@@ -3783,24 +3765,30 @@ export default function NamePlateManager({ onLogout }) {
               onClick={onLogout}
               title="Sign out of ESL Gateway"
               style={{
-                background: 'rgba(255, 255, 255, 0.15)',
+                background: 'rgba(255, 255, 255, 0.18)',
                 color: '#ffffff',
-                border: '1px solid rgba(255, 255, 255, 0.4)',
-                padding: '9px 20px',
+                border: '1.5px solid rgba(255, 255, 255, 0.6)',
+                padding: '9px 22px',
                 borderRadius: '22px',
-                fontSize: '14px',
-                fontWeight: 'bold',
+                fontSize: '13px',
+                fontWeight: '700',
                 cursor: 'pointer',
                 outline: 'none',
-                transition: 'all 0.2s ease'
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.25s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#ffffff';
                 e.currentTarget.style.color = '#b71c1c';
+                e.currentTarget.style.borderColor = '#ffffff';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.18)';
                 e.currentTarget.style.color = '#ffffff';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.6)';
               }}
             >
               Sign Out ⎋
@@ -3808,10 +3796,6 @@ export default function NamePlateManager({ onLogout }) {
           )}
         </div>
       </div>
-
-
-
-      
 
       {/* Global Status Alert */}
       <div style={{
@@ -4005,8 +3989,6 @@ export default function NamePlateManager({ onLogout }) {
           </div>
 
           {/* Card 3: QR Code Generator */}
-
-          {/* Card 3: QR Code Generator */}
           <div style={{ background: '#f9fbe7', border: '1px solid #c0ca33', borderRadius: '8px', padding: '16px' }}>
             <h3 style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#33691e', display: 'flex', alignItems: 'center', gap: '6px' }}>
               🏁 QR Code (Top-Right: 150x150)
@@ -4184,11 +4166,6 @@ export default function NamePlateManager({ onLogout }) {
               </button>
             </div>
 
-            {/* <small style={{ color: '#777', display: 'block', marginBottom: '10px' }}>
-              Viewing: <strong>{previewSide.toUpperCase()}</strong> | Name: <strong>{formatTextCase(previewSide === 'front' ? previewItem?.frontName : previewItem?.backName)}</strong> |
-              Target MAC: <strong>{previewItem?.mac || 'Unassigned'}</strong>
-            </small> */}
-
             <div style={{ display: 'inline-block', border: '2px solid #444', borderRadius: '4px', background: '#fff', maxWidth: '640px', width: '100%', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
               <canvas ref={canvasRef} style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
@@ -4200,8 +4177,6 @@ export default function NamePlateManager({ onLogout }) {
               <span style={{ fontWeight: 'bold', fontSize: '15px' }}>Deployment Queue ({plates.length} Plates)</span>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-
-
 
                 <button
                   type="button"
@@ -4222,9 +4197,6 @@ export default function NamePlateManager({ onLogout }) {
                   Sync Row 1 to All
                 </button>
 
-
-
-
                 {/* Clear Button: Sirf tabhi active hoga jab 1 se zyada plates hon */}
                 <button
                   type="button"
@@ -4244,15 +4216,6 @@ export default function NamePlateManager({ onLogout }) {
                 >
                   Clear Added Plates
                 </button>
-
-
-
-
-
-
-
-
-
 
                 <button
                   type="button"
@@ -4465,14 +4428,6 @@ export default function NamePlateManager({ onLogout }) {
                                 Delete
                               </button>
                             )}
-
-
-
-
-
-
-
-
                           </div>
                         )}
                       </td>
